@@ -1,0 +1,33 @@
+version: '3.6'
+services:
+  database:
+    image: postgres:12
+    volumes:
+      - dbdata:/var/lib/postgresql/data:cached
+    ports:
+      - '55432:5432'
+    environment:
+      POSTGRES_USER: mayak
+      POSTGRES_HOST_AUTH_METHOD: trust
+  
+  mayak_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c 'rm -rf tmp/pids && bundle exec rails server -b 0.0.0.0'
+    depends_on: [database]
+    ports:
+      - 3000:3000
+    volumes:
+      - mayak_api-code:/app:cached
+      - mayak_api_bundle:/usr/local/bundle:cached
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://mayak@database:5432/mayak_api
+
+volumes: 
+  dbdata: {}
+  mayak_api-code:
+    driver: local
+  mayak_api_bundle:
+    driver: local
