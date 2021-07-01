@@ -2,6 +2,8 @@
 
 build: 
 	docker-compose build
+
+migrate:
 	docker-compose up -d database
 	docker-compose run --rm mayak_api bundle exec rake db:create db:migrate
 
@@ -10,3 +12,7 @@ run:
 
 stop:
 	docker-compose down
+
+test:
+	docker-compose run --rm -e RAILS_ENV=test mayak_api bin/rails db:environment:set RAILS_ENV=test
+	docker-compose run --rm -e RAILS_ENV=test mayak_api rspec $(path)

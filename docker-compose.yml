@@ -3,7 +3,7 @@ services:
   database:
     image: postgres:12
     volumes:
-      - dbdata:/var/lib/postgresql/data:cached
+      - dbdata:/var/lib/postgresql/data
     ports:
       - '55432:5432'
     environment:
@@ -19,8 +19,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - mayak_api-code:/app:cached
-      - mayak_api_bundle:/usr/local/bundle:cached
+      - mayak_api-code:/app
+      - mayak_api_bundle:/usr/local/bundle
     environment:
       PORT: 3000
       DATABASE_URL: postgres://mayak@database:5432/mayak_api
