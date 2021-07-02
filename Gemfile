@@ -20,6 +20,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'json-schema'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
