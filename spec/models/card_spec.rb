@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:card) }
+
+  describe "is not valid without a imt_id" do
+    it { should validate_presence_of(:imt_id) }
+  end
+
+  describe "is not valid without a product_name" do
+    it { should validate_presence_of(:product_name) }
+  end
 end

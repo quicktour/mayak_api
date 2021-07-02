@@ -16,6 +16,9 @@ gem 'jsonapi-rails'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'json-schema'
 end
 

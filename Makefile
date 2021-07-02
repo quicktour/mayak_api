@@ -2,8 +2,6 @@
 
 build: 
 	docker-compose build
-
-migrate:
 	docker-compose up -d database
 	docker-compose run --rm mayak_api bundle exec rake db:create db:migrate
 
