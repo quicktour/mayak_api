@@ -9,6 +9,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jsonapi-rails'
+gem 'excon'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -16,11 +17,13 @@ gem 'jsonapi-rails'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
+  gem 'webmock'
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'json-schema'
   gem 'database_cleaner-active_record'
+  gem 'sinatra'
 end
 
 group :development do
