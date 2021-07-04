@@ -20,6 +20,7 @@ RSpec.describe Feedbacks::ListService, 'call' do
       expect(@response.body['feedbacks'].last.has_key?('productValuation')).to be true
       expect(@response.body['feedbacks'].last.has_key?('wbUserDetails')).to be true
       expect(@response.body['feedbacks'].last.has_key?('productDetails')).to be true
+      expect(@response.body['feedbacks'].last.has_key?('createdDate')).to be true
 
       expect(@response.body['feedbacks'].last['wbUserDetails'].has_key?('name')).to be true
       expect(@response.body['feedbacks'].last['productDetails'].has_key?('productName')).to be true

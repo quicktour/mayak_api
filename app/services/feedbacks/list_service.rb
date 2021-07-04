@@ -4,7 +4,7 @@ class Feedbacks::ListService < ApplicationService
   attr_reader :status
   attr_reader :body
 
-  def initialize(card_id, limit = 1)
+  def initialize(card_id, limit = 0)
     @card_id = card_id
     @limit = limit
   end

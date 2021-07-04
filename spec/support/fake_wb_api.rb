@@ -1,6 +1,7 @@
 require 'json'
 require 'faker'
 require 'byebug'
+require 'active_support/time'
 
 class FakeWbApi
   class << self 
@@ -24,21 +25,27 @@ class FakeWbApi
 
     def build_body(imtId, limit)
       result = []
-      limit.times { result << body_template(imtId) }
-      result
+      product_name = Faker::Commerce.department
+      rand(100..1000).times do |index|
+        result << body_template(imtId, product_name, index)
+      end
+      return result if limit.zero?
+      
+      result.first(limit)
     end
 
-    def body_template(imtId)
+    def body_template(imtId, product_name, index)
       {
         "imtId": imtId,
         "subjectId": rand(10..400),
         "text": Faker::Lorem.sentence,
         "productValuation": rand(1..5),
+        "createdDate": (Time.now - (index * rand(1..15)).hour).strftime('%Y-%d-%mT%H:%M:%SZ'),
         "wbUserDetails": {
           "name": Faker::Name.name
         },
         "productDetails": {
-          "productName": Faker::Commerce.department
+          "productName": product_name
         }
       }
     end
