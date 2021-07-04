@@ -10,7 +10,6 @@ RSpec.describe RangeCutterService, 'call' do
     it 'test week range cut' do
       result = RangeCutterService.call(@response.body['feedbacks'], :week)
       dates_array = result.map { |item| item['createdDate'] }
-
       dates_array.each do |date|
         expect(1.week.ago.to_date..Date.today).to cover(date.to_date)
       end

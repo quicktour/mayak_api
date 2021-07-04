@@ -26,21 +26,23 @@ class FakeWbApi
     def build_body(imtId, limit)
       result = []
       product_name = Faker::Commerce.department
+      create_date = DateTime.current
       rand(100..1000).times do |index|
-        result << body_template(imtId, product_name, index)
+        create_date = generate_date(index, create_date)
+        result << body_template(imtId, product_name, create_date)
       end
       return result if limit.zero?
       
       result.first(limit)
     end
 
-    def body_template(imtId, product_name, index)
+    def body_template(imtId, product_name, create_date)
       {
         "imtId": imtId,
         "subjectId": rand(10..400),
         "text": Faker::Lorem.sentence,
         "productValuation": rand(1..5),
-        "createdDate": (Time.now - (index * rand(1..15)).hour).strftime('%Y-%d-%mT%H:%M:%SZ'),
+        "createdDate": create_date.strftime('%Y-%m-%dT%H:%M:%SZ'),
         "wbUserDetails": {
           "name": Faker::Name.name
         },
@@ -48,6 +50,23 @@ class FakeWbApi
           "productName": product_name
         }
       }
+    end
+
+    def generate_date(index, date)
+      date -= (index + rand(10..50)).minutes
+
+      if date_is_valid?(date.strftime('%Y-%m-%d'))
+        return date
+      else
+        generate_date(index, (date - 1.day))
+      end
+    end
+
+    def date_is_valid?(date)
+      DateTime.parse date
+      return true
+    rescue Date::Error
+      return false
     end
 
     def get_params(env)
