@@ -13,18 +13,20 @@ class Feedbacks::ChartService < ApplicationService
   private
 
   def build_cart(cutted_result)
-    pre_result = {}
+    pre_result = build_pre_result()
     cutted_result.each do |item|
       key = DateTime.parse(item['createdDate']).strftime("%b %d")
-
-      if pre_result.has_key?(key)
-        pre_result[key] += 1
-      else
-        pre_result[key] = 1
-      end
+      pre_result[key] += 1
     end
 
     result_template(pre_result.keys.map(&:to_s), pre_result.values.map(&:to_i))
+  end
+
+  def build_pre_result
+    (1.public_send(@range).ago.to_date..Date.today).inject({}) do |mem, item| 
+      mem[item.strftime("%b %d")] = 0
+      mem
+    end
   end
 
   def result_template(labels, data)
