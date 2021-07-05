@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["cards"],
+  "properties": {
+    "cards": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer" },
+            "imt_id": { "type": "integer" },
+            "product_name": { "type": "string" },
+            "created_at": { "type": "string" },
+            "updated_at": { "type": "string" }
+          },
+          "required": ["id", "imt_id", "product_name"]
+        }
+      ]
+    }
+  }
+}

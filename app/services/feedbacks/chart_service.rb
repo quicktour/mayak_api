@@ -24,7 +24,7 @@ class Feedbacks::ChartService < ApplicationService
       end
     end
 
-    result_template(pre_result.keys.map(&:to_s), pre_result.values.map(&:to_s))
+    result_template(pre_result.keys.map(&:to_s), pre_result.values.map(&:to_i))
   end
 
   def result_template(labels, data)

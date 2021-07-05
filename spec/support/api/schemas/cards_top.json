@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": ["cards"],
+  "properties": {
+    "cards": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "imt_id": { "type": "integer" },
+            "total_comments": { "type": "integer" }
+          },
+          "required": ["imt_id", "total_comments"]
+        }
+      ]
+    }
+  }
+}

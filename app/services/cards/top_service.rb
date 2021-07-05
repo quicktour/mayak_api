@@ -11,7 +11,7 @@ class Cards::TopService < ApplicationService
   private
 
   def generate_top_result
-    build_response.sort_by { |el| -el[:total_comments] }.last(10)
+    build_response.sort_by { |el| -el[:total_comments] }.first(10)
   end
 
   def build_response

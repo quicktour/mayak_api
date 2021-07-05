@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Cards::TopService do
   describe 'it returns top limit cards' do
     before do
-      create_list(:card, 100)
+      create_list(:card, 30)
       range = :week
       @limit = 10
       @result = Cards::TopService.call(@limit, range)

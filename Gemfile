@@ -8,7 +8,6 @@ gem 'rails', '~> 6.1.4'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'jsonapi-rails'
 gem 'excon'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible

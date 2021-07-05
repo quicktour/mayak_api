@@ -17,9 +17,9 @@ class Feedbacks::ListService < ApplicationService
   private
 
   def get_list
-    body = {"skip": 0, "imtId": @card_id, "order": "dateDesc", "take": @limit}
+    body = {"skip": 0, "imtId": @card_id.to_i, "order": "dateDesc", "take": @limit}
     response = Excon.post("#{ENV.fetch("WB_API_ENDPOINT")}/feedbacks", body: body.to_json)
-
+  
     @status = response.status
     @body = JSON.parse(response.body)
   end
