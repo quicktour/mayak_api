@@ -23,7 +23,6 @@ group :development, :test do
   gem 'faker'
   gem 'json-schema'
   gem 'database_cleaner-active_record'
-  gem 'sinatra'
 end
 
 group :development do
