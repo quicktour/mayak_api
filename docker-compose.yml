@@ -23,8 +23,10 @@ services:
       - mayak_api_bundle:/usr/local/bundle:cached
     environment:
       PORT: 3000
-      DATABASE_URL: postgres://mayak@database:5432/mayak_api
+      DATABASE_URL: postgres://mayak@database:5432/mayak_api_development
+      TEST_DATABASE_URL: postgres://mayak@database:5432/mayak_api_test
       WB_API_ENDPOINT: https://public-feedbacks.wildberries.ru/api/v1
+      DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: 'true'
 
 volumes: 
   dbdata: {}

@@ -3,7 +3,7 @@
 build: 
 	docker-compose build
 	docker-compose up -d database
-	docker-compose run --rm mayak_api bundle exec rake db:create db:migrate
+	docker-compose run --rm mayak_api bundle exec rake db:create db:migrate db:seed db:test:prepare
 
 run: 
 	docker-compose up --remove-orphans --abort-on-container-exit --force-recreate
